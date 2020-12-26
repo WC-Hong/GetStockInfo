@@ -1,11 +1,18 @@
-import time
+import datetime
 import requests
+import pymysql
 from bs4 import BeautifulSoup
 
+# get html request
+url = "https://api.finmindtrade.com/api/v3/data"
+parameter = {
+    "dataset": "TaiwanStockPriceMinute",
+    "stock_id": "2610",
+}
+# parameter["date"] = datetime.datetime.now().strftime("%Y-%m-%d")
+parameter["date"] = "2020-12-23"
 
-    # get html request
-    # request = requests.get("https://s.yimg.com/nb/tw_stock_frontend/scripts/StxChart/StxChart.9d11dfe155.html?sid=2610")
-    # soup = BeautifulSoup(request.text, 'html.parser')  # put html source code into html parser
-    # content = soup.body
-while True:
-    time.sleep(300)  # sleep 5 minute
+data = requests.get(url, params=parameter).json()
+
+# while True:
+#     time.sleep(300)  # sleep 5 minute
